@@ -2,6 +2,7 @@
 #include <sstream>
 #include <ctime>
 #include <cstdlib>
+#include "id_verify.h"
 using namespace std;
 int CHAR_TO_ID[] = { 10,11,12,13,14,15,16,17,34,18,19,20,21,22,35,23,24,25,26,27,28,29,32,30,31,33 };
 int char_to_int(char const& input)
@@ -9,7 +10,21 @@ int char_to_int(char const& input)
     int tmp = static_cast<int>(input);
     return tmp - static_cast<int>('0');
 }
-bool is_id_ok(std::string const& id)
+int stairlayer(int n)
+{
+    int i, res;
+    if (n == 0)
+        return 0;
+    i = 1;
+    res = 1;
+    while (i <= n)
+    {
+        res *= i;
+        ++i;
+    }
+    return res;
+}
+bool is_id_ok( string const& id)
 {
     if (sizeof(CHAR_TO_ID) / sizeof(int) != 26)
     {
@@ -40,4 +55,11 @@ bool is_id_ok(std::string const& id)
         }
     }
     return false;
+}
+
+std::string id_generator()
+{
+    srand(time(NULL));
+    std::cout << printf("Random number: %d\n", rand() % 10) << std::endl;
+    return "";
 }
